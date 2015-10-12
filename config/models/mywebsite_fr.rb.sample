@@ -1,0 +1,32 @@
+# encoding: utf-8
+
+Backup::Model.new(:mywebsite_com, 'Backups for mywebsite_com') do
+
+  archive :mywebsite_htdocs do |archive|
+    archive.add "/srv/www/mywebsite.com"
+  end
+
+  database MySQL do |db|
+    db.name               = "wp_mywebsite"
+    db.username           = "wp_mywebsite"
+    db.password           = "abcd1234"
+    db.host               = "db"
+    db.port               = 3306
+  end
+
+  store_with Local
+
+  compress_with Gzip
+
+  encrypt_with OpenSSL
+
+  sync_with Cloud::S3 do |s3|
+    s3.directories do |directory|
+      directory.add "/srv/backups-docker/mywebsite_com"
+    end
+  end
+
+notify_by Ses
+
+end
+

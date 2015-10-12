@@ -1,0 +1,4 @@
+openssl_password
+tmp/
+config.rb
+config/models/*.rb
