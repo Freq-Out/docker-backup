@@ -31,7 +31,12 @@ An automated build is available at [freqout/backup](https://hub.docker.com/r/fre
 
 Example run:
 
-    $ docker run -it -v /srv/www/mywebsite:/srv/www/mywebsite -v /srv/backups-docker:/srv/backups-docker -v `pwd`/config:/etc/backup --rm --link mywebsite_db_1:db freqout/backup mywebsite_com
+    $ docker run -it -v /srv/www/mywebsite:/srv/www/mywebsite \
+    -v /srv/backups-docker:/srv/backups-docker \
+    -v `pwd`/config:/etc/backup \
+    --rm \
+    --link mywebsite_db_1:db \
+    freqout/backup mywebsite_com
 
 ## Credits
 
